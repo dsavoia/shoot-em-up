@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
 
     [SerializeField] float speed = 3;
@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = Vector2.zero;
     InputAction move;
     InputAction fire;
+
+    public Weapon weapon;
+    public int health = 3;
 
     void Awake() 
     {
@@ -35,7 +38,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
+        weapon = GetComponentInChildren<Weapon>();
     }
     
     void Update()
@@ -51,6 +55,15 @@ public class PlayerController : MonoBehaviour
 
     void Fire(InputAction.CallbackContext context) 
     {
-        Debug.Log("Fired");
+        weapon.Fire();
+    }
+
+    public void TakeDamage(int damage) 
+    {
+        health -= damage;
+        if (health <= 0) 
+        {
+            Destroy(gameObject);
+        }
     }
 }
