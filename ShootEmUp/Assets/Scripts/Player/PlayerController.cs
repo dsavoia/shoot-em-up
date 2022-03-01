@@ -1,69 +1,127 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
 
     [SerializeField] float speed = 3;
+    [SerializeField] Weapon[] weapons;
+    [SerializeField] GameObject specialWeapon;
+    [SerializeField] Transform playerSpawnPoint;
 
     Rigidbody2D rb;
-    PlayerInputActions playerControls;
-    Vector2 moveDirection = Vector2.zero;
-    InputAction move;
-    InputAction fire;
+    PlayerInput playerInput;
+    Weapon currentWeapon;
 
-    public Weapon weapon;
-    public int health = 3;
+    int lives = 3;
 
-    void Awake() 
-    {
-        playerControls = new PlayerInputActions();
-    }
+    int weaponLevel = 0;
+    int maxWeaponLevel;
 
-    void OnEnable() 
-    {
-        move = playerControls.Player.Move;
-        move.Enable();
+    bool isInvencible;
+    float invencibilityStartTime;
+    float invencibilityTimer;
 
-        fire = playerControls.Player.Fire;
-        fire.Enable();
-        fire.performed += Fire;
-    }
-
-    void OnDisable() 
-    {
-        move.Disable();
-        fire.Disable();
-    }
+    bool isUsingSpecialWeapon;
+    float specialWeaponStartTime;
+    float specialWeaponTimer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        weapon = GetComponentInChildren<Weapon>();
+        playerInput = GetComponent<PlayerInput>();
+
+        maxWeaponLevel = weapons.Length - 1;
+        weaponLevel = 0;
+        SwitchWeapon(weaponLevel);
+        specialWeapon.SetActive(false);
     }
     
     void Update()
     {
-        moveDirection = move.ReadValue<Vector2>();
+        CheckInvencibility();
+        CheckSpecialWeaponPowerUp();
     }
 
-    // TODO: Move out to a separate move script if movement gets more complex
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        rb.velocity = new Vector2(playerInput.moveDirection.x * speed, playerInput.moveDirection.y * speed);
     }
 
-    void Fire(InputAction.CallbackContext context) 
+    public void Shoot() 
     {
-        weapon.Fire();
+        if (isUsingSpecialWeapon) return;
+        
+        currentWeapon.Fire();
+    }
+
+    public void SwitchWeapon(int weaponIndex) 
+    {
+        currentWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+    }
+
+    public void UpgradeWeapon() 
+    {
+        if (weaponLevel < maxWeaponLevel) 
+        {
+            weaponLevel++;
+            currentWeapon = weapons[weaponLevel].GetComponent<Weapon>();
+        }
+    }
+
+    public void StartInvencibility(float duration)
+    {
+        invencibilityStartTime = Time.time;
+        invencibilityTimer = duration;
+        isInvencible = true;
+    }
+
+    public void ActivateSpecialWeapon(float duration)
+    {
+        specialWeapon.SetActive(true);
+        specialWeaponStartTime = Time.time;
+        specialWeaponTimer = duration;
+        isUsingSpecialWeapon = true;
+    }
+
+    // Check if the player should still be invencible
+    void CheckInvencibility()
+    {
+        if (!isInvencible) return;
+
+        if (Time.time > invencibilityStartTime + invencibilityTimer)
+        {
+            isInvencible = false;
+        } 
+    }
+
+    // Check if the special weapon should still be in use
+    void CheckSpecialWeaponPowerUp()
+    {
+        if (!isUsingSpecialWeapon) return;
+
+        if (Time.time > specialWeaponStartTime + specialWeaponTimer)
+        {
+            isUsingSpecialWeapon = false;
+            specialWeapon.SetActive(false);
+        } 
     }
 
     public void TakeDamage(int damage) 
     {
-        health -= damage;
-        if (health <= 0) 
-        {
-            Destroy(gameObject);
+        if (isInvencible) return;
+
+        Die();
+    }
+
+    public void Die() 
+    {
+        if (lives > 0) {
+            lives --;
+            transform.position = playerSpawnPoint.position;
+            return;
         }
+
+        Destroy(gameObject);
     }
 }
