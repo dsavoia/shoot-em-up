@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3994891173516797928}
   - component: {fileID: 3994891173516797929}
   - component: {fileID: 3994891173516797934}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaLaserWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3994891174398525896}
   - component: {fileID: 3994891174398525899}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

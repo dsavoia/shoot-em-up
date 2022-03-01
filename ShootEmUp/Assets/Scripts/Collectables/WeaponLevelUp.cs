@@ -9,8 +9,8 @@ public class WeaponLevelUp : BaseCollectable
         if (playerController != null)
         {
             playerController.UpgradeWeapon();
-            Destroy(gameObject);
         }
 
+        Destroy(gameObject);
     }
 }

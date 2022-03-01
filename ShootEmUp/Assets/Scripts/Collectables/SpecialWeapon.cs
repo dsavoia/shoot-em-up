@@ -14,8 +14,8 @@ public class SpecialWeapon : BaseCollectable
         if (playerController != null)
         {
             playerController.ActivateSpecialWeapon(specialWeaponDuration);
-            Destroy(gameObject);
         }
-
+        
+        Destroy(gameObject);
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2679784011705711229}
   - component: {fileID: 1715666733095737160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3720442863654654862}
   - component: {fileID: 3720442863654654851}
   - component: {fileID: 4050094715521417613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PU_SpecialWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

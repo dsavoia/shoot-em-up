@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8801953540887235734}
   - component: {fileID: 314979207575059520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 50870174557276866}
   - component: {fileID: 1082221771335610771}
   - component: {fileID: 4460750709811034182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BlueLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

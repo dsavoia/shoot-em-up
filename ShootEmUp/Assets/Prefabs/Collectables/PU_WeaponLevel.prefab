@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6303215951490258556}
   - component: {fileID: 6303215951490258557}
   - component: {fileID: 6303215951490258545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PU_WeaponLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4749239105288650639}
   - component: {fileID: 8293215283036983994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

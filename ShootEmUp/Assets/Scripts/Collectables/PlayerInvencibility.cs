@@ -13,8 +13,8 @@ public class PlayerInvencibility : BaseCollectable
         if (playerController != null)
         {
             playerController.ActivateInvencibility(invencibilityDuration);
-            Destroy(gameObject);
         }
 
+        Destroy(gameObject);
     }
 }

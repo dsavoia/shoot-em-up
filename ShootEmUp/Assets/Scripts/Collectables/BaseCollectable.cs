@@ -4,17 +4,14 @@ using UnityEngine;
 
 public abstract class BaseCollectable : MonoBehaviour, ICollectable
 {
-    public float minSpeed = 0.5f;
+    public float minSpeed = 1f;
     public float maxSpeed = 4f;
     public float minXDirection = -0.6f;
     public float maxXDirection = 0.6f;
 
-    Rigidbody2D rb;
-    float speed;
-
+    protected Rigidbody2D rb;
+    protected float speed;
     protected Vector2 direction;
-
-    public abstract void OnTriggerEnter2D(Collider2D other);
 
     public virtual void Start()
     {
@@ -47,4 +44,6 @@ public abstract class BaseCollectable : MonoBehaviour, ICollectable
     {
         return new Vector2(Random.Range(minXDirection, maxXDirection), -1);
     }
+
+    public abstract void OnTriggerEnter2D(Collider2D other);
 }
