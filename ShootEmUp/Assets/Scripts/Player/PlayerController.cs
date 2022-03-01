@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     float specialWeaponStartTime;
     float specialWeaponTimer;
 
+    public int playerScore;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         weaponLevel = 0;
         SwitchWeapon(weaponLevel);
         specialWeapon.SetActive(false);
+        playerScore = 0;
     }
     
     void Update()
@@ -69,7 +72,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    public void StartInvencibility(float duration)
+    public void ActivateInvencibility(float duration)
     {
         invencibilityStartTime = Time.time;
         invencibilityTimer = duration;
@@ -107,6 +110,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         } 
     }
 
+    public void AddScore(int score) 
+    {
+
+    }
+
     public void TakeDamage(int damage) 
     {
         if (isInvencible) return;
@@ -116,7 +124,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Die() 
     {
-        if (lives > 0) {
+        if (lives > 0) 
+        {
             lives --;
             transform.position = playerSpawnPoint.position;
             return;

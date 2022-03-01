@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialWeaponPU : BaseCollectable
+public class SpecialWeapon : BaseCollectable
 {
 
    [SerializeField] float specialWeaponDuration = 5;
