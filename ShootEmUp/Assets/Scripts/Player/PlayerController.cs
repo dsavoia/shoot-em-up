@@ -112,7 +112,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void AddScore(int score) 
     {
-
+        playerScore += score;
+        Debug.Log("Player Score: " + playerScore);
     }
 
     public void TakeDamage(int damage) 

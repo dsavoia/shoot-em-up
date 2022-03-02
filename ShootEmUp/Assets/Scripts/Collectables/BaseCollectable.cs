@@ -24,7 +24,7 @@ public abstract class BaseCollectable : MonoBehaviour, ICollectable
         direction = GetRandomDirection();
     }
 
-    public virtual void Update()
+    public virtual void FixedUpdate()
     {
         Move();
     }
