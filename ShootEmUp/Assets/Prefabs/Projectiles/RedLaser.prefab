@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8801953540887235734}
   - component: {fileID: 314979207575059520}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -2070720963
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 737e252e88953294d89682787b240302, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18e79c339df7ea84c989b90c9fea7522, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 50870174557276866}
   - component: {fileID: 1082221771335610771}
   - component: {fileID: 4460750709811034182}
-  m_Layer: 10
-  m_Name: BlueLaser
+  m_Layer: 11
+  m_Name: RedLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

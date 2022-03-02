@@ -11,6 +11,7 @@ public abstract class BaseSpawner : MonoBehaviour
     public float waitBeforeSartSpawning = 5;
     [Range(0, 1)]
     public float spawnChance;
+    public bool ignoreSpawnChance;
 
     protected float lastSpawnedTime;
     protected float nextSpawnTimer;
@@ -26,25 +27,25 @@ public abstract class BaseSpawner : MonoBehaviour
         SpawnObject(null);
     }
 
-    public virtual void SpawnObject(GameObject spawnObject) 
+    public virtual GameObject SpawnObject(GameObject spawnObject) 
     {
         if (Time.time > lastSpawnedTime + nextSpawnTimer)
         {
             lastSpawnedTime = Time.time;
-            nextSpawnTimer = Time.time + Random.Range(minSpawnIterval, maxSpawnIterval);
-            
-            if (!ShouldSpawnObject()) return;
+            nextSpawnTimer = Random.Range(minSpawnIterval, maxSpawnIterval);
+            if (!ShouldSpawnObject()) return null;
 
             Vector2 position = GetRandomPosition();
             GameObject objToSpawn = spawnObject ? spawnObject : GetRandomObject();
-            Instantiate(objToSpawn, position, Quaternion.identity);
+            return Instantiate(objToSpawn, position, Quaternion.identity);
         }
 
-        return;
+        return null;
     }
 
     public virtual bool ShouldSpawnObject() 
     {
+        if (ignoreSpawnChance) return true;
         return Random.Range(0, 1) <= spawnChance;
     }
 

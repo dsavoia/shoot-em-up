@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < gunPoints.Length; i++) 
         {
-            Projectile projectile = Instantiate(projectilePrefab, gunPoints[i].transform.position, Quaternion.identity).GetComponent<Projectile>();
+            BaseProjectile projectile = Instantiate(projectilePrefab, gunPoints[i].transform.position, Quaternion.identity).GetComponent<BaseProjectile>();
             projectile.Direction = gunPoints[i].projectileDirection;
         }
     }

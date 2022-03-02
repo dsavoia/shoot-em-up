@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MegaLaser : MonoBehaviour
 {
-
     [SerializeField] int damage = 2;
     [SerializeField] float duration = 6;
     
