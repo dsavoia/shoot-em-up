@@ -185,10 +185,10 @@ MonoBehaviour:
   invulnerabilityTime: 0.2
   scoreObjectPrefab: {fileID: 8707573608064110522, guid: ec1acc50cbc38774b8553694da97ce17, type: 3}
   itemDropChance: 1
-  scoreValue: 10
+  scoreValue: 15
   speed: 1.5
   weapon: {fileID: 7263393793040093540}
-  shootCooldown: 5
+  shootCooldown: 3.5
 --- !u!1001 &7306583803594591182
 PrefabInstance:
   m_ObjectHideFlags: 0

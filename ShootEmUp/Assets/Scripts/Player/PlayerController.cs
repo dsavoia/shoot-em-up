@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] Weapon[] weapons;
     [SerializeField] GameObject specialWeapon;
     [SerializeField] Transform playerSpawnPoint;
+    [SerializeField] GameObject playerShield;
 
     Rigidbody2D rb;
     PlayerInput playerInput;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     
     void Update()
     {
+        ClampPlayerPosition();
         CheckInvencibility();
         CheckSpecialWeaponPowerUp();
     }
@@ -52,6 +54,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         rb.velocity = new Vector2(playerInput.moveDirection.x * speed, playerInput.moveDirection.y * speed);
+    }
+
+    void ClampPlayerPosition()
+    {
+        Vector3 playerPos = transform.position;
+        playerPos.x =  Mathf.Clamp(transform.position.x, -7.5f, 7.5f);
+        playerPos.y =  Mathf.Clamp(transform.position.y, -4.5f, 3f);
+        transform.position = playerPos;
     }
 
     public void Shoot() 
@@ -80,6 +90,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         invencibilityStartTime = Time.time;
         invencibilityTimer = duration;
         isInvencible = true;
+        playerShield.SetActive(true);
     }
 
     public void ActivateSpecialWeapon(float duration)
@@ -98,6 +109,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (Time.time > invencibilityStartTime + invencibilityTimer)
         {
             isInvencible = false;
+            playerShield.SetActive(false);
         } 
     }
 
@@ -133,6 +145,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (lives > 0) 
         {
             transform.position = playerSpawnPoint.position;
+            ActivateInvencibility(5);
             return;
         }
 
