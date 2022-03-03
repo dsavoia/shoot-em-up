@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     float specialWeaponTimer;
 
     public int playerScore;
+    public UI ui;
 
     void Start()
     {
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         SwitchWeapon(weaponLevel);
         specialWeapon.SetActive(false);
         playerScore = 0;
+        ui.SetScoreText(playerScore);
+        ui.SetLifeText(lives);
     }
     
     void Update()
@@ -113,6 +116,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void AddScore(int score) 
     {
         playerScore += score;
+        ui.SetScoreText(playerScore);
     }
 
     public void TakeDamage(int damage) 
@@ -124,13 +128,15 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Die() 
     {
+        lives --;
+        ui.SetLifeText(lives);
         if (lives > 0) 
         {
-            lives --;
             transform.position = playerSpawnPoint.position;
             return;
         }
 
+        ui.ShowRestartButton();
         Destroy(gameObject);
     }
 }

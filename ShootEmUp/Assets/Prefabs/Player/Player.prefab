@@ -172,6 +172,7 @@ MonoBehaviour:
   specialWeapon: {fileID: 6673743342380746124}
   playerSpawnPoint: {fileID: 0}
   playerScore: 0
+  ui: {fileID: 0}
 --- !u!50 &8543095674671395153
 Rigidbody2D:
   serializedVersion: 4
