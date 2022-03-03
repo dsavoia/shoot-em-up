@@ -152,4 +152,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         ui.ShowRestartButton();
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.collider.GetComponent<BaseEnemy>() != null)
+        {
+            Die();
+        }    
+    }
 }
