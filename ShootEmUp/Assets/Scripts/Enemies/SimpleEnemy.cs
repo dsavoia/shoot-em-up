@@ -12,7 +12,8 @@ public class SimpleEnemy : BaseEnemy
 
     private void OnEnable() 
     {
-        xMovementDirection = Mathf.Sign(transform.position.x);    
+        xMovementDirection = Mathf.Sign(transform.position.x);
+        lastShoot = Time.time + shootCooldown/2;  
     }
 
     public override void Update()
